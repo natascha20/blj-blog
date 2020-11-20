@@ -18,6 +18,7 @@ ul, li{
     max-width: length;
     margin: 20px;
     text-align: center;
+    align-self: center;
 }
 
 form{
