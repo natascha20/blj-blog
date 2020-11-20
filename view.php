@@ -1,10 +1,37 @@
 <?php 
+$errors = [];
+$formSent = false;
 
 include("logic.php");
 
+$username = $_POST['username'] ?? '';
+$postTitle = $_POST['postTitle'] ?? '';
+$postText = $_POST['postText'] ?? '';
+
+
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if($username === ''){
+        $errors[] = 'Bitte geben Sie einen Namen ein.';
+    }
+
+    if($postTitle === ''){
+        $errors[] = 'Bitte geben Sie einen Titel für Ihren Post ein.';
+    }
+
+    if($postText === ''){
+        $errors[] = 'Bitte geben Sie einen Text ein.';
+    }
+
+    if (count($errors)=== 0){
+        $formSent = true;
+
+        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text) VALUES(now(), :creator, :title, :post)");
+        $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText]);
+        
+    }
+}
+
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,15 +59,14 @@ include("logic.php");
             <div class="form">
                 <form action="view.php" method="post">
                     <label for="form">Your Post:<br></label>
+                    <label for="username">Ihr Name:</label>
                     <input type="text" name="username" value="<?=$username?>"><br>
+                    <label for="postTitle">Post Titel:</label>
                     <input type="text" name="postTitle" value="<?=$postTitle?>"><br>
                     <textarea name="postText" id="postText" cols="30" rows="5" value="<?=$postText?>"></textarea><br/>
                     <input type="Submit" value="Absenden"> <br>
                 </form>
-                <?php 
-                $stmt = $pdo->prepare("INSERT INTO posts (created_by, post_title, post_text) VALUES(now(), :creator, :title, :post)");
-                $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText]);
-                ?>
+              
             </div>
         </main>
     </body>

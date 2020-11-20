@@ -22,7 +22,7 @@ ul, li{
 }
 
 form{
-    margin-bottom: 150px;
+    margin: auto;
 }
 
 button{
@@ -36,4 +36,9 @@ button{
     border: 2px solid grey;
     padding: auto;
     margin: auto;
+}
+
+fieldset{
+    margin: auto;
+    padding: auto;
 }
