@@ -1,29 +1,5 @@
 <?php 
-    $errors = [];
-    $formSent = false;
-
-
     include("logic.php");
-
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        if($username === ''){
-            $errors[] = 'Bitte geben Sie einen Namen ein.';
-        }
-
-        if($postTitle === ''){
-            $errors[] = 'Bitte geben Sie einen Titel für Ihren Post ein.';
-        }
-
-        if($postText === ''){
-            $errors[] = 'Bitte geben Sie einen Text ein.';
-        }
-
-        if(count($errors) === 0){
-            $formSent = true;
-            $daten = [$username, $postTitle, $postText];
-        }
-    }
-
 ?>
 
 <!DOCTYPE html>
@@ -31,27 +7,27 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>Blog</title>
     </head>
     <body>
         <?php include "nav.php" ?>
         <main>
+        <?php if(count($errors) > 0){
+                foreach($errors as $error){
+                    echo $error . '<br>';
+                }
+        }?>
             <h1>Blog</h1>
             <ul>
-                <li>Beispielbeitrag</li>
-                <li><img src="img/sunset.jpg" alt="sunset"></li>
-                <li>Beispielbeitrag1 mit mehr Text</li>
-                <li>Beispielbeitrag2 Was habe ich heute gemacht: xxxxx</li>
-                <li>Beispielbeitrag3 xxxxxxxxxxxxxxxxxxxx <br> yyyyyyyyyyyy</li>
-                <li><img src="img/travel.jpg" alt="travel"></li>
-                <li>Beispielbeitrag4</li>
-                <li><img src="img/ocan.jpg" alt="ocan"></li>
-
-                <?php
-                for($y = 1; $y < 3; $y++){ ?>
-                <li><?= $erg = $pdo->get("SELECT * FROM posts");?></li>
-                <?php }?>
+            <?php 
+            foreach($rows as $rows) {  ?>
+                <li>   
+                    <?= $rows ["created_by"]. '<br>' . $rows["post_text"] .'<br><br>';
+                    }
+                    ?>
+                </li>        
+          </ul>
             
             <div class="form">
 
