@@ -1,5 +1,6 @@
 body{
     background-color: aliceblue;
+    color: black;
 }
 
 main{
@@ -39,6 +40,13 @@ button{
 }
 
 fieldset{
-    margin: auto;
-    padding: auto;
+    margin: center;
+    padding: center;
+    text-align: center;
+
 }
+
+html{
+    color: black;
+}
+

@@ -13,3 +13,10 @@ foreach($stmt->fetchAll() as $x) {
 }
 $cols = 3;
 $rows = 5;
+
+$username = $_POST['username'] ?? '';
+$postTitle = $_POST['postTitle'] ?? '';
+$postText = $_POST['postText'] ?? '';
+
+$stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text) VALUES(now(), :creator, :title, :post)");
+$stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText]);    

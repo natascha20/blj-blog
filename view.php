@@ -1,37 +1,31 @@
 <?php 
-$errors = [];
-$formSent = false;
-
-include("logic.php");
-
-$username = $_POST['username'] ?? '';
-$postTitle = $_POST['postTitle'] ?? '';
-$postText = $_POST['postText'] ?? '';
+    $errors = [];
+    $formSent = false;
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    if($username === ''){
-        $errors[] = 'Bitte geben Sie einen Namen ein.';
+    include("logic.php");
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if($username === ''){
+            $errors[] = 'Bitte geben Sie einen Namen ein.';
+        }
+
+        if($postTitle === ''){
+            $errors[] = 'Bitte geben Sie einen Titel für Ihren Post ein.';
+        }
+
+        if($postText === ''){
+            $errors[] = 'Bitte geben Sie einen Text ein.';
+        }
+
+        if(count($errors) === 0){
+            $formSent = true;
+            $daten = [$username, $postTitle, $postText];
+        }
     }
-
-    if($postTitle === ''){
-        $errors[] = 'Bitte geben Sie einen Titel für Ihren Post ein.';
-    }
-
-    if($postText === ''){
-        $errors[] = 'Bitte geben Sie einen Text ein.';
-    }
-
-    if (count($errors)=== 0){
-        $formSent = true;
-
-        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text) VALUES(now(), :creator, :title, :post)");
-        $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText]);
-        
-    }
-}
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -41,9 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <title>Blog</title>
     </head>
     <body>
-        <?php 
-            include "nav.php";
-            ?>
+        <?php include "nav.php" ?>
         <main>
             <h1>Blog</h1>
             <ul>
@@ -55,8 +47,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 <li><img src="img/travel.jpg" alt="travel"></li>
                 <li>Beispielbeitrag4</li>
                 <li><img src="img/ocan.jpg" alt="ocan"></li>
-            </ul>
+
+                <?php
+                for($y = 1; $y < 3; $y++){ ?>
+                <li><?= $erg = $pdo->get("SELECT * FROM posts");?></li>
+                <?php }?>
+            
             <div class="form">
+
                 <form action="view.php" method="post">
                     <label for="form">Your Post:<br></label>
                     <label for="username">Ihr Name:</label>
@@ -66,8 +64,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <textarea name="postText" id="postText" cols="30" rows="5" value="<?=$postText?>"></textarea><br/>
                     <input type="Submit" value="Absenden"> <br>
                 </form>
-              
+            
             </div>
+
         </main>
     </body>
 </html>
