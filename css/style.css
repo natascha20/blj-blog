@@ -1,0 +1,65 @@
+h1,main,.links, nav{
+    text-align: center;
+}
+
+
+body{
+    background-color: aliceblue;
+}
+
+nav{
+    background-color: white;
+    padding: 20px;
+    margin-top: 50px;
+    text-decoration: none;
+
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    font-size: x-large;
+    display: inline;
+    padding-right: 15px;
+}
+
+
+a{
+    color: rgb(125, 168, 233);
+    text-decoration: none;
+}
+
+h1{
+    padding-top: 100px;
+}
+
+
+
+.post{
+    border: 1px solid rgb(125, 168, 233);
+    border-radius: 5px;
+    margin-left: 500px;
+    margin-right: 500px;
+}
+
+.form{
+    border: 1px solid rgb(125, 168, 233);
+    border-radius: 5px;
+    margin-left: 500px;
+    margin-right: 500px;
+    padding-left: ;
+
+}
+
+.links{
+    border: 2px solid rgb(125, 168, 233);
+    border-radius: 5px;
+    margin-left: 500px;
+    margin-right: 500px;
+    
+
+}
+
+

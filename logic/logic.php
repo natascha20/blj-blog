@@ -3,6 +3,7 @@
     $username = '';
     $postTitle = '';
     $postText = '';
+    $image = '';
     
     $pdo = new PDO('mysql:host=localhost;dbname=blogblj', 'root', '', [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
@@ -13,6 +14,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = $_POST['username'] ?? '';
     $postTitle = $_POST['postTitle'] ?? '';
     $postText = $_POST['postText'] ?? '';
+    $image = $_POST['image'] ?? '';
 
     if($username === ''){
         $errors[] = 'Bitte geben Sie einen Namen ein.';
@@ -27,12 +29,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     }
 
     if(count($errors) === 0){
-        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text) VALUES(now(), :creator, :title, :post)");
+        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text, img_url) VALUES(now(), :creator, :title, :post)");
         $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText]);    
 
         $username = '';
         $postTitle = '';
         $postText = '';
+        $image = '';
     }
 }
 
