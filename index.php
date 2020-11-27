@@ -4,7 +4,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
                 foreach($rows as $rows) {  ?>
                 <li>   
                     <div class="post">
-                        <?= $rows ["created_by"]. ', '.$rows ["post_title"] . '<br>' . $rows["post_text"] .' <img class="img src="'. $rows["imageurl"] . '" alt="">';
+                        <?= $rows["created_at"].''.$rows ["created_by"]. ', '.$rows ["post_title"] . '<br>' . $rows["post_text"] .' <br><img src="'. $rows["imageurl"] . '">';
                         }
                         ?>
                     </div>
@@ -34,7 +34,7 @@
             
             
             <div class="form">
-                <form action="view.php" method="post">
+                <form action="index.php" method="post">
                     <label for="form">Your Post:<br></label>
                     <label for="username">Ihr Name:</label>
                     <input type="text" name="username" value="<?=$username?>"><br>

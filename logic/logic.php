@@ -1,6 +1,6 @@
 <?php
     $errors = [];
-    $postTime = '';
+    $date = date('d.m.y H:i');
     $username = '';
     $postTitle = '';
     $postText = '';
@@ -25,14 +25,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $errors[] = 'Bitte geben Sie einen Titel für Ihren Post ein.';
     }
 
-    if($postText === ''|| $imageurl === ''){
-        $errors[] = 'Bitte geben Sie einen Text oder ein Bild ein.';
-    }
+    // if($postText === ''|| $imageurl === ''){
+    //     $errors[] = 'Bitte geben Sie einen Text oder ein Bild ein.';
+    // }
 
     if(count($errors) === 0){
-        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text, imageurl) VALUES(now(), :creator, :title, :post, :imageurl)");
-        $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText, ':imageurl' => $imageurl]);    
+        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text, imageurl) VALUES(:post_date, :creator, :title, :post, :imageurl)");
+        $stmt->execute([':post_date' => $date, ':creator' => $username, ':title' => $postTitle, ':post' => $postText, ':imageurl' => $imageurl]);    
 
+        $date = '';
         $username = '';
         $postTitle = '';
         $postText = '';
