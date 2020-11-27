@@ -1,6 +1,6 @@
 <?php
     include("nav.php");
-    include("logic/logicdatabaseUrls.php");
+    include("logic/databaseUrls.php");
 ?>
 <link rel="stylesheet" href="css/style.css">
 
@@ -17,3 +17,4 @@
         ?>
     </ul>
 </div>
+
