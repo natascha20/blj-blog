@@ -1,4 +1,4 @@
-<?php 
+<!-- <?php 
         include("nav.php");
         ?>
 
@@ -20,4 +20,4 @@
         </form>    
 </main>
 </body>
-</html>
+</html> -->

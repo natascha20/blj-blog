@@ -25,7 +25,7 @@
                 foreach($rows as $rows) {  ?>
                 <li>   
                     <div class="post">
-                        <?= $rows ["created_by"]. ', '.$rows ["post_title"] . '<br>' . $rows["post_text"] .''. $rows;
+                        <?= $rows ["created_by"]. ', '.$rows ["post_title"] . '<br>' . $rows["post_text"] .' <img class="img src="'. $rows["imageurl"] . '" alt="">';
                         }
                         ?>
                     </div>
@@ -41,7 +41,8 @@
                     <label for="postTitle">Post Titel:</label>
                     <input type="text" name="postTitle" value="<?=$postTitle?>"><br>
                     <textarea name="postText" id="postText" cols="30" rows="5" value="<?=$postText?>"></textarea><br/>
-                    <input type="file" value="<?=$image?>"><br>
+                    <label for="image">Bild:</label>
+                    <input type="url" value="<?=$imageurl?>"><br>
                     <input type="Submit" value="Absenden"> <br>
                 </form>
             </div>

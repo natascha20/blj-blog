@@ -1,11 +1,12 @@
 <?php
     $errors = [];
+    $postTime = '';
     $username = '';
     $postTitle = '';
     $postText = '';
-    $image = '';
+    $imageurl = '';
     
-    $pdo = new PDO('mysql:host=localhost;dbname=blogblj', 'root', '', [
+    $pdo = new PDO('mysql:host=localhost;dbname=blogblj', 'd041e_namueller', '12345_Db!!!', [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     ]);
@@ -14,7 +15,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = $_POST['username'] ?? '';
     $postTitle = $_POST['postTitle'] ?? '';
     $postText = $_POST['postText'] ?? '';
-    $image = $_POST['image'] ?? '';
+    $imageurl = $_POST['imageurl'] ?? '';
 
     if($username === ''){
         $errors[] = 'Bitte geben Sie einen Namen ein.';
@@ -24,18 +25,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $errors[] = 'Bitte geben Sie einen Titel für Ihren Post ein.';
     }
 
-    if($postText === ''){
-        $errors[] = 'Bitte geben Sie einen Text ein.';
+    if($postText === ''|| $imageurl === ''){
+        $errors[] = 'Bitte geben Sie einen Text oder ein Bild ein.';
     }
 
     if(count($errors) === 0){
-        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text, img_url) VALUES(now(), :creator, :title, :post)");
-        $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText]);    
+        $stmt = $pdo->prepare("INSERT INTO posts (created_at, created_by, post_title, post_text, imageurl) VALUES(now(), :creator, :title, :post, :imageurl)");
+        $stmt->execute([':creator' => $username, ':title' => $postTitle, ':post' => $postText, ':imageurl' => $imageurl]);    
 
         $username = '';
         $postTitle = '';
         $postText = '';
-        $image = '';
+        $imageurl = '';
     }
 }
 
