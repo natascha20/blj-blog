@@ -6,7 +6,7 @@
     $postText = '';
     $imageurl = '';
     
-    $pdo = new PDO('mysql:host=localhost;dbname=blogblj', 'd041e_namueller', '12345_Db!!!', [
+    $pdo = new PDO('mysql:host=https://mysql2adm.webland.ch/;dbname=d041e_namueller', 'd041e_namueller', '12345_Db!!!', [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     ]);
