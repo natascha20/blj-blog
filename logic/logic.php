@@ -1,6 +1,6 @@
 <?php
     $errors = [];
-    $date    = date ('d.m.y H:i:s');
+    $date  = '';
     $username = '';
     $postTitle = '';
     $postText = '';
@@ -30,6 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $postTitle = $_POST['postTitle'] ?? '';
     $postText = $_POST['postText'] ?? '';
     $imageurl = $_POST['imageurl'] ?? '';
+    $date    = date('y.m.d H:i:s');
 
     if($username === ''){
         $errors[] = 'Bitte geben Sie einen Namen ein.';

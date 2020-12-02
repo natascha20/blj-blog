@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
-        <title>Blog</title>
+        <title>Natascha's Blog</title>
     </head>
     <body>
         <main>
@@ -23,36 +23,36 @@
             
             <ul>
                 <?php 
-                foreach($rows as $rows):
+                foreach($rows as $row):
                 ?>
                 <li>   
                     <div class="post">
                         <?php 
-                        if (HasEmptySpace($rows) === true){
-                            echo (htmlspecialchars($rows["created_at"]).' '.htmlspecialchars($rows ["created_by"]). ', '.htmlspecialchars($rows ["post_title"]). '<br>');
-                            echo (htmlspecialchars($rows["post_text"]) . ' <br>');
-                            echo '<img id="image" src="' .htmlspecialchars($rows["imageurl"]) . '" alt="">';
-                        };
-                            ?>
+                            echo (htmlspecialchars($row["created_at"]).' '.htmlspecialchars($row ["created_by"]). ', '.htmlspecialchars($row ["post_title"]). '<br>');
+                            echo (htmlspecialchars($row["post_text"]) . ' <br>');
+                            echo '<img class="imageurl" src="' .htmlspecialchars($row["imageurl"]) . '" alt="">';
+                        ?>
                     </div>
                 </li>     
                 <?php endforeach; ?>
             </ul>
             
-            
-            <div class="form">
+            <h2>Dein Post:</h2>
+            <div class="form" id="new-post">
                 <form action="index.php" method="post">
-                    <label for="form">Your Post:<br></label>
                     <label for="username">Ihr Name:</label>
                     <input type="text" name="username" value="<?=$username?>"><br>
                     <label for="postTitle">Post Titel:</label>
-                    <input type="text" name="postTitle" value="<?=$postTitle?>"><br>
-                    <textarea name="postText" id="postText" cols="20" rows="50" value="<?=$postText?>"></textarea><br/>
-                    <label for="imageurl">Bild:</label>
-                    <textarea name="imageurl" id="imageurl" value="<?=$imageurl?>"></textarea><br/>
+                    <input type="text" name="postTitle" value="<?=$postTitle?>"><br><br>
+                    <label for="postText">Post:<br></label>
+                    <textarea name="postText" id="postText" cols="30" rows="5" value="<?=$postText?>"></textarea><br><br>
+                    <label for="imageurl">Bildadresse:</label>
+                    <input type="text" name="imageurl" id="imageurl" value="<?=$imageurl?>"><br><br>
                     <input type="Submit" value="Absenden"> <br>
                 </form>
             </div>
         </main>
 	</body>
 </html>
+
+
