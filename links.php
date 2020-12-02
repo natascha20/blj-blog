@@ -9,11 +9,13 @@
 <div class="links">
     <ul>
         <?php
+        
         foreach($urls as $url) {
-         $link = '<li><a href="' . $url["blogUrl"] . '" target="_blank">' . $url["blogAuthor"] . 's Blog' . '</a>' . '</li><br>';
+            $link= '<li><a href="' . $url["blogUrl"] . '" target="_blank">' . $url["blogAuthor"] . 's Blog' . '</a>' . '</li><br>';
 
         echo $link;
         } 
+    
         ?>
     </ul>
 </div>

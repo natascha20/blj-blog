@@ -14,22 +14,27 @@
     <body>
         <main>
             <?php if(count($errors) > 0){
-                    foreach($errors as $error){
+                    foreach($errors as $error):
                         echo $error . '<br>';
-                    }
-            }?>
+                    endforeach;
+                }
+                    ?>
             <h1>Blog</h1>
             
             <ul>
                 <?php 
-                foreach($rows as $rows) {  ?>
+                foreach($rows as $rows):
+                ?>
                 <li>   
                     <div class="post">
-                        <?= $rows["created_at"].''.$rows ["created_by"]. ', '.$rows ["post_title"] . '<br>' . $rows["post_text"] .' <br><img src="'. $rows["imageurl"] . '">';
-                        }
-                        ?>
+                        <?php 
+                        echo (htmlspecialchars($rows["created_at"]).' '.htmlspecialchars($rows ["created_by"]). ', '.htmlspecialchars($rows ["post_title"]). '<br>');
+                        echo (htmlspecialchars($rows["post_text"]) . ' <br>');
+                        echo '<img src="' .htmlspecialchars($rows["imageurl"]) . '" alt="">';
+                            ?>
                     </div>
-                </li>         
+                </li>     
+                <?php endforeach; ?>
             </ul>
             
             
@@ -41,8 +46,8 @@
                     <label for="postTitle">Post Titel:</label>
                     <input type="text" name="postTitle" value="<?=$postTitle?>"><br>
                     <textarea name="postText" id="postText" cols="30" rows="5" value="<?=$postText?>"></textarea><br/>
-                    <label for="image">Bild:</label>
-                    <input type="url" value="<?=$imageurl?>"><br>
+                    <label for="imageurl">Bild:</label>
+                    <textarea name="imageurl" id="imageurl" value="<?=$imageurl?>"></textarea><br/>
                     <input type="Submit" value="Absenden"> <br>
                 </form>
             </div>
