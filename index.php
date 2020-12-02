@@ -28,9 +28,11 @@
                 <li>   
                     <div class="post">
                         <?php 
-                        echo (htmlspecialchars($rows["created_at"]).' '.htmlspecialchars($rows ["created_by"]). ', '.htmlspecialchars($rows ["post_title"]). '<br>');
-                        echo (htmlspecialchars($rows["post_text"]) . ' <br>');
-                        echo '<img src="' .htmlspecialchars($rows["imageurl"]) . '" alt="">';
+                        if (HasEmptySpace($rows) === true){
+                            echo (htmlspecialchars($rows["created_at"]).' '.htmlspecialchars($rows ["created_by"]). ', '.htmlspecialchars($rows ["post_title"]). '<br>');
+                            echo (htmlspecialchars($rows["post_text"]) . ' <br>');
+                            echo '<img id="image" src="' .htmlspecialchars($rows["imageurl"]) . '" alt="">';
+                        };
                             ?>
                     </div>
                 </li>     
@@ -45,7 +47,7 @@
                     <input type="text" name="username" value="<?=$username?>"><br>
                     <label for="postTitle">Post Titel:</label>
                     <input type="text" name="postTitle" value="<?=$postTitle?>"><br>
-                    <textarea name="postText" id="postText" cols="30" rows="5" value="<?=$postText?>"></textarea><br/>
+                    <textarea name="postText" id="postText" cols="20" rows="50" value="<?=$postText?>"></textarea><br/>
                     <label for="imageurl">Bild:</label>
                     <textarea name="imageurl" id="imageurl" value="<?=$imageurl?>"></textarea><br/>
                     <input type="Submit" value="Absenden"> <br>

@@ -1,26 +1,29 @@
 <?php
     $errors = [];
-    $date = date('d.m.y H:i');
+    $date    = date ('d.m.y H:i:s');
     $username = '';
     $postTitle = '';
     $postText = '';
     $imageurl = '';
-    
-    //Datenbank 041er
-    // $dbuser = "d041e_namueller";
-    // $dbpassword = "12345_Db!!!";
+    $space = ' ';
 
-    // $pdo = new PDO('mysql:host=mysql2.webland.ch;dbname=d041e_namueller',$dbuser , $dbpassword, [
-    //     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
-    //     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-    // ]);
-    $dbuser = "root";
-    $dbpassword = "";
+    // Datenbank 041er
+    $dbuser = "d041e_namueller";
+    $dbpassword = "12345_Db!!!";
 
-    $pdo = new PDO('mysql:host=localhost;dbname=bljblog',$dbuser , $dbpassword, [
+    $pdo = new PDO('mysql:host=mysql2.webland.ch;dbname=d041e_namueller',$dbuser , $dbpassword, [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     ]);
+
+
+    // $dbuser = "root";
+    // $dbpassword = "";
+
+    // $pdo = new PDO('mysql:host=localhost;dbname=bljblog',$dbuser , $dbpassword, [
+    //     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    //     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+    // ]);
 
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $username = $_POST['username'] ?? '';
@@ -56,3 +59,10 @@ $query= 'select * from posts order by created_at desc';
 
 $stmt = $pdo -> query($query);
 $rows = $stmt -> fetchAll();
+
+function HasEmptySpace($rows){
+    if(strpos($rows, " ")=== false){
+        return false;
+    }
+    return true;
+};
